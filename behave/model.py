@@ -149,8 +149,9 @@ class FileLocation(object):
         return not self < other
 
     def __repr__(self):
-        return u'<FileLocation: filename="%s", line=%s>' % \
-               (self.filename, self.line)
+        d = '<FileLocation: filename="%s", line=%s>' % \
+            (self.filename, self.line)
+        return d.encode("utf-8")
 
     def __str__(self):
         if self.line is None:
@@ -318,8 +319,9 @@ class Feature(TagAndStatusStatement, Replayable):
             scenario.reset()
 
     def __repr__(self):
-        return '<Feature "%s": %d scenario(s)>' % \
+        d = '<Feature "%s": %d scenario(s)>' % \
             (self.name, len(self.scenarios))
+        return d.encode("utf-8")
 
     def __iter__(self):
         return iter(self.scenarios)
@@ -532,7 +534,8 @@ class Background(BasicStatement, Replayable):
         self.steps = steps or []
 
     def __repr__(self):
-        return '<Background "%s">' % self.name
+        d = '<Background "%s">' % self.name
+        return d.encode("utf-8")
 
     def __iter__(self):
         return iter(self.steps)
@@ -668,7 +671,8 @@ class Scenario(TagAndStatusStatement, Replayable):
             return iter(self.steps)
 
     def __repr__(self):
-        return '<Scenario "%s">' % self.name
+        d = '<Scenario "%s">' % self.name
+        return d.encode("utf-8")
 
     def __iter__(self):
         # XXX return iter(self.all_steps)
@@ -1053,7 +1057,8 @@ class ScenarioOutline(Scenario):
         return self._scenarios
 
     def __repr__(self):
-        return '<ScenarioOutline "%s">' % self.name
+        d = '<ScenarioOutline "%s">' % self.name
+        return d.encode("utf-8")
 
     def __iter__(self):
         return iter(self.scenarios)
@@ -1269,7 +1274,8 @@ class Step(BasicStatement, Replayable):
         self.exc_traceback = sys.exc_info()[2]
 
     def __repr__(self):
-        return '<%s "%s">' % (self.step_type, self.name)
+        d = '<%s "%s">' % (self.step_type, self.name)
+        return d.encode("utf-8")
 
     def __eq__(self, other):
         return (self.step_type, self.name) == (other.step_type, other.name)
@@ -1520,7 +1526,8 @@ class Table(Replayable):
             return self.add_column(column_name)
 
     def __repr__(self):
-        return "<Table: %dx%d>" % (len(self.headings), len(self.rows))
+        d = "<Table: %dx%d>" % (len(self.headings), len(self.rows))
+        return d.encode("utf-8")
 
     def __eq__(self, other):
         if isinstance(other, Table):
@@ -1613,7 +1620,8 @@ class Row(object):
         return self.cells[index]
 
     def __repr__(self):
-        return '<Row %r>' % (self.cells,)
+        d = '<Row %r>' % (self.cells,)
+        return d.encode("utf-8")
 
     def __eq__(self, other):
         return self.cells == other.cells
@@ -1757,7 +1765,8 @@ class Match(Replayable):
             func_name = self.func.__name__
         else:
             func_name = '<no function>'
-        return '<Match %s, %s>' % (func_name, self.location)
+        d = u'<Match %s, %s>' % (func_name, self.location)
+        return d.encode("utf-8")
 
     def __eq__(self, other):
         if not isinstance(other, Match):

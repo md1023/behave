@@ -61,8 +61,8 @@ class Matcher(object):
         return model.Match(self.func, result)
 
     def __repr__(self):
-        return u"<%s: %r>" % (self.__class__.__name__, self.string)
-
+        d = "<%s: %r>" % (self.__class__.__name__, self.string)
+        return d.encode("utf-8")
 
 class ParseMatcher(Matcher):
     custom_types = {}
