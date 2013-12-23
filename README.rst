@@ -1,3 +1,12 @@
+Notes about this fork
+---------------------
+
+Original behave library throws lots of unicode decode errors on non ascii characters.
+
+Since I'm using internationalization library and produce my rules in russian,
+this problem clobbers my research and thus tackled in this repository.
+
+
 ======
 Behave
 ======
