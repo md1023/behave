@@ -78,11 +78,14 @@ class StepRegistry(object):
         #   W0621: 44,29:StepRegistry.make_decorator: Redefining 'step_type' ..
         def decorator(string):
             def wrapper(func):
-                self.add_step_definition(step_type, string, func)
+                self.add_step_definition(step_type, ensure_unicode(string), func)
                 return func
             return wrapper
         return decorator
 
+def ensure_unicode(s):
+    if isinstance(s, unicode): return s
+    return str(s).decode("utf-8")
 
 registry = StepRegistry()
 
