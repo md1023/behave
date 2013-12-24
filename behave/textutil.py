@@ -26,8 +26,11 @@ def indent(text, prefix):
     elif lines and not lines[0].endswith("\n"):
         # -- TEXT LINES: Without trailing new-line.
         newline = u"\n"
-    return newline.join([prefix + unicode(line) for line in lines])
+    return newline.join([prefix + ensure_unicode(line) for line in lines])
 
+def ensure_unicode(s):
+    if isinstance(s, unicode): return s
+    return str(s).decode("utf-8")
 
 def compute_words_maxsize(words):
     """

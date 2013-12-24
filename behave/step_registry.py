@@ -83,6 +83,7 @@ class StepRegistry(object):
             return wrapper
         return decorator
 
+# should be imported elsewhere, possibly from textutil
 def ensure_unicode(s):
     if isinstance(s, unicode): return s
     return str(s).decode("utf-8")
