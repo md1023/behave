@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 
 from behave.formatter.ansi_escapes import escapes, up
 from behave.formatter.base import Formatter
@@ -285,6 +285,8 @@ class PrettyFormatter(Formatter):
         arg_format = self.arg_format(status)
 
         #self.print_comments(step.comments, '    ')
+        if (status is 'failed'):
+            self.stream.write('\n\n    ')
         self.stream.write('    ')
         self.stream.write(text_format.text(step.keyword + ' '))
         line_length = 5 + len(step.keyword)
