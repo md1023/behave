@@ -29,7 +29,8 @@ def indent(text, prefix):
     return newline.join([prefix + ensure_unicode(line) for line in lines])
 
 def ensure_unicode(s):
-    if isinstance(s, unicode): return s
+    if isinstance(s, unicode):
+        return s
     return str(s).decode("utf-8")
 
 def compute_words_maxsize(words):

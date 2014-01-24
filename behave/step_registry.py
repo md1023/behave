@@ -5,6 +5,7 @@ The step registry allows to match steps (model elements) with
 step implementations (step definitions). This is necessary to execute steps.
 """
 
+from behave.textutil import ensure_unicode
 
 class AmbiguousStep(ValueError):
     pass
@@ -82,11 +83,6 @@ class StepRegistry(object):
                 return func
             return wrapper
         return decorator
-
-# should be imported elsewhere, possibly from textutil
-def ensure_unicode(s):
-    if isinstance(s, unicode): return s
-    return str(s).decode("utf-8")
 
 registry = StepRegistry()
 

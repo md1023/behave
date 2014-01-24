@@ -16,6 +16,7 @@ from behave.configuration import ConfigError
 from behave.log_capture import LoggingCapture
 from behave.runner_util import \
     collect_feature_locations, parse_features
+from behave.textutil import ensure_unicode
 
 
 class ContextMaskWarning(UserWarning):
@@ -283,14 +284,14 @@ class Context(object):
                 step_line = u"%s %s" % (step.keyword, step.name)
                 message = "%s SUB-STEP: %s" % (step.status.upper(), step_line)
                 if step.error_message:
-                    message += "\nSubstep info: %s" % step.error_message
+                    message += "\nSubstep info: %s" % \
+                        ensure_unicode(step.error_message)
                 assert False, message
 
         # -- FINALLY: Restore original context data for current step.
         self.table = original_table
         self.text  = original_text
         return True
-
 
 def exec_file(filename, globals={}, locals=None):
     if locals is None:
