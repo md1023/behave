@@ -10,7 +10,7 @@ DEFAULT_LANGUAGE = 'en'
 def parse_file(filename, language=None):
     with open(filename, 'rb') as f:
         # file encoding is assumed to be utf8. Oh, yes.
-        data = f.read().decode('utf8')
+        data = f.read().decode('utf-8')
     return parse_feature(data, language, filename)
 
 
@@ -69,9 +69,10 @@ class ParserError(Exception):
         self.filename = filename
 
     def __str__(self):
+        d = 'Failed to parse <string>: %s' % self.args[0]
         if self.filename:
-            return 'Failed to parse "%s": %s' % (self.filename, self.args[0])
-        return 'Failed to parse <string>: %s' % self.args[0]
+            d = 'Failed to parse "%s": %s' % (self.filename, self.args[0])
+        return d
 
 
 class Parser(object):

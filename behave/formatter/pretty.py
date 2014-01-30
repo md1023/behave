@@ -264,9 +264,10 @@ class PrettyFormatter(Formatter):
         self.stream.write(u"  %s: %s " % (self.statement.keyword,
                                           self.statement.name))
 
-        location = self.indented_text(unicode(self.statement.location), True)
         if self.show_source:
-            self.stream.write(self.format('comments').text(location))
+            location = self.indented_text(unicode(self.statement.location), True)
+            d = self.format('comments').text(location)
+            self.stream.write(d)
         self.stream.write("\n")
         #self.print_description(self.statement.description, u'    ')
         self.statement = None
@@ -319,14 +320,14 @@ class PrettyFormatter(Formatter):
             if self.show_timings and status in ('passed', 'failed'):
                 location += ' %0.3fs' % step.duration
             location = self.indented_text(location, proceed)
-            self.stream.write(self.format('comments').text(location))
+            d = location
             line_length += len(location)
         elif self.show_timings and status in ('passed', 'failed'):
             timing = '%0.3fs' % step.duration
             timing = self.indented_text(timing, proceed)
-            self.stream.write(self.format('comments').text(timing))
+            d = timing
             line_length += len(timing)
-        self.stream.write("\n")
+        self.stream.write(d + "\n")
 
         self.step_lines = int((line_length - 1) / self.display_width)
 
