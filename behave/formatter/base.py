@@ -3,6 +3,7 @@
 import codecs
 import os.path
 import sys
+import platform
 
 
 class StreamOpener(object):
@@ -16,11 +17,11 @@ class StreamOpener(object):
       * the name (filename/dirname) of the output stream
       * let it decide if directory mode is used instead of file mode
     """
-    default_encoding = "UTF-8"
+    default_encoding = dict(Windows="cp866")
 
     def __init__(self, filename=None, stream=None, encoding=None):
         if not encoding:
-            encoding = self.default_encoding
+            encoding = self.default_encoding.get(platform.system(), "utf-8")
         if stream:
             stream = self.ensure_stream_with_encoder(stream, encoding)
         self.name = filename

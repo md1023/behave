@@ -1356,7 +1356,7 @@ class Step(BasicStatement, Replayable):
             self.status = 'failed'
             self.store_exception_context(e)
             if e.args:
-                error = u'Assertion Failed: %s' % e
+                error = u'Assertion Failed: %s' % repr(e)
             else:
                 # no assertion text; format the exception
                 error = traceback.format_exc()
