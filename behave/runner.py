@@ -286,7 +286,7 @@ class Context(object):
                 if step.error_message:
                     message += "\nSubstep info: %s" % \
                         ensure_unicode(step.error_message)
-                assert False, message
+                assert False, message.encode("utf-8")
 
         # -- FINALLY: Restore original context data for current step.
         self.table = original_table
