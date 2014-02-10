@@ -10,6 +10,7 @@ import time
 import traceback
 from behave import step_registry
 from behave.compat.os_path import relpath
+from behave.textutil import ensure_unicode
 
 
 class Argument(object):
@@ -1356,7 +1357,7 @@ class Step(BasicStatement, Replayable):
             self.status = 'failed'
             self.store_exception_context(e)
             if e.args:
-                error = u'Assertion Failed: %s' % repr(e)
+                error = u'Assertion Failed: %s' % ensure_unicode(e.message)
             else:
                 # no assertion text; format the exception
                 error = traceback.format_exc()
