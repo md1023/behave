@@ -43,7 +43,8 @@ class StepRegistry(object):
                 existing.step_type = step_type
                 existing_step = existing.describe()
                 existing_step += " at %s" % existing.location
-                raise AmbiguousStep(message % (new_step, existing_step))
+                msg = message % (new_step, existing_step)
+                raise AmbiguousStep(msg.encode("utf-8"))
         step_definitions.append(matchers.get_matcher(func, string))
 
     def find_step_definition(self, step):
