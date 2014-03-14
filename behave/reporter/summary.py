@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 """
 Provides a summary after each test run.
 """
@@ -64,8 +64,8 @@ class SummaryReporter(Reporter):
         if self.show_failed_scenarios and self.failed_scenarios:
             self.stream.write("\nFailing scenarios:\n")
             for scenario in self.failed_scenarios:
-                self.stream.write("  %s  %s\n" % (
-                    scenario.location, scenario.name))
+                d = "  %s  %s\n" % (scenario.location, scenario.name)
+                self.stream.write(d.encode("utf-8"))
             self.stream.write("\n")
 
         # -- SHOW SUMMARY COUNTS:
