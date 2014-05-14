@@ -56,12 +56,12 @@ def find_packages_by_root_package(where):
 # -----------------------------------------------------------------------------
 setup(
     name="behave",
-    version="1.2.5a1",
-    description="behave is behaviour-driven development, Python style",
+    version="1.2.5a1-igrade14a",
+    description="behave is behaviour-driven development, Python style, unicode support",
     long_description=description,
-    author="Benno Rice, Richard Jones and Jens Engel",
-    author_email="behave-users@googlegroups.com",
-    url="http://github.com/behave/behave",
+    author="Benno Rice, Richard Jones and Jens Engel, Maxim Nikolaev",
+    author_email="md1023@users.noreply.github.com",
+    url="http://github.com/md1023/behave",
     provides = ["behave", "setuptools_behave"],
     packages = find_packages_by_root_package(BEHAVE),
     py_modules = ["setuptools_behave"],
